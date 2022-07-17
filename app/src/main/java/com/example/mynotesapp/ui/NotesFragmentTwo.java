@@ -50,18 +50,17 @@ public class NotesFragmentTwo extends Fragment {
                 }
             }
 
-            TextView tvTitle = view.findViewById(R.id.note_name_redactor);
-            tvTitle.setText(note.getNoteName());
-            tvTitle.addTextChangedListener(new TextWatcher() {
+            TextView tvName = view.findViewById(R.id.note_name_redactor);
+            tvName.setText(note.getNoteName());
+            tvName.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    note.setNoteName(tvTitle.getText().toString());
+                    note.setNoteName(tvName.getText().toString());
                     updateData();
-                    //Note.getNotes()[index].setTitle(charSequence.toString());
                 }
 
                 @Override
@@ -71,6 +70,21 @@ public class NotesFragmentTwo extends Fragment {
 
             TextView tvDescription = view.findViewById(R.id.note_desc_redactor);
             tvDescription.setText(note.getNoteDescription());
+            tvDescription.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    note.setNoteDescription(tvDescription.getText().toString());
+                    updateData();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                }
+            });
         }
     }
 

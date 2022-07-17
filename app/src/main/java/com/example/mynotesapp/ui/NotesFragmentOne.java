@@ -3,10 +3,12 @@ package com.example.mynotesapp.ui;
 import static com.example.mynotesapp.ui.NotesFragmentTwo.SELECTED_NOTE;
 
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -19,13 +21,12 @@ import android.widget.TextView;
 
 import com.example.mynotesapp.R;
 import com.example.mynotesapp.model.Notes;
-import com.google.android.material.button.MaterialButton;
+
+import java.time.format.DateTimeFormatter;
 
 
 public class NotesFragmentOne extends Fragment {
     Notes notes;
-    MaterialButton createNewNoteBtn;
-    private int addIndex = 0;
     View dataContainer;
 
     @Override
@@ -46,6 +47,7 @@ public class NotesFragmentOne extends Fragment {
         return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
@@ -57,20 +59,14 @@ public class NotesFragmentOne extends Fragment {
         dataContainer = view.findViewById(R.id.fragment_one_container);
         initDisplay(dataContainer);
 
-/*        createNewNoteBtn = (MaterialButton) view.findViewById(R.id.create_new_note);
-        createNewNoteBtn.setOnClickListener(v -> {
-            Notes.notesArrayList.add(new Notes("Заметка","дата","Описание"));
-
-            addIndex++;
-        });
-
- */
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void initDisplay() {
         initDisplay(dataContainer);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void initDisplay(View view) {
         LinearLayout container = (LinearLayout) view;
         container.removeAllViews();
@@ -116,13 +112,17 @@ public class NotesFragmentOne extends Fragment {
                 == Configuration.ORIENTATION_LANDSCAPE;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initList(LinearLayout container) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         for (int i = 0; i < Notes.getNotesArrayList().size(); i++) {
             View itemView = getLayoutInflater().inflate(R.layout.cardview_notes, container, false);
             TextView textViewNoteName = itemView.findViewById(R.id.note_name);
             textViewNoteName.setText(Notes.getNotesArrayList().get(i).getNoteName());
             TextView textViewNoteDate = itemView.findViewById(R.id.note_date);
-            textViewNoteDate.setText(Notes.getNotesArrayList().get(i).getDate());
+            textViewNoteDate.setText(String.valueOf(dateTimeFormatter.format(Notes.getNotesArrayList().get(i).getDate())));
+            TextView textViewNoteDesc = itemView.findViewById(R.id.note_desc);
+            textViewNoteDesc.setText(Notes.getNotesArrayList().get(i).getNoteDescription());
 
             final int index = i;
             itemView.setOnClickListener(cardViewClick ->
@@ -131,10 +131,11 @@ public class NotesFragmentOne extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initCreateBtn(LinearLayout container) {
         View btnCreate = getLayoutInflater().inflate(R.layout.create_new_note_btn, container, false);
         btnCreate.setOnClickListener(vBtn -> {
-            Notes.notesArrayList.add(new Notes("Заметка", "дата", "Описание"));
+            Notes.notesArrayList.add(new Notes("Заметка"));
             initDisplay();
         });
         container.addView(btnCreate);

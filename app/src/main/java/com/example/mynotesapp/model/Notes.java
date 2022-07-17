@@ -1,15 +1,26 @@
 package com.example.mynotesapp.model;
 
+import android.media.Image;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.EditText;
 
+import androidx.annotation.RequiresApi;
+
+import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Notes implements Parcelable {
     private static int counter;
     public static ArrayList<Notes> notesArrayList = new ArrayList<Notes>();
+    int id;
+    private String noteName;
+    private LocalDateTime date;
+    private String noteDescription;
+    private Image image;
+    private File file;
 
 
     public int getId() {
@@ -20,18 +31,10 @@ public class Notes implements Parcelable {
         this.noteName = noteName;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public void setNoteDescription(String noteDescription) {
         this.noteDescription = noteDescription;
     }
-
-    int id;
-    String noteName;
-    String date;
-    String noteDescription;
 
     public static ArrayList<Notes> getNotesArrayList() {
         return notesArrayList;
@@ -41,19 +44,19 @@ public class Notes implements Parcelable {
 
     }
 
-    public Notes(String name, String date, String noteDescription) {
+    public Notes(String name) {
         this.noteName = name;
-        this.date = date;
-        this.noteDescription = noteDescription;
     }
+
     {
         id = ++counter;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected Notes(Parcel in) {
         id = in.readInt();
         noteName = in.readString();
-        date = in.readString();
+        date = (LocalDateTime) in.readSerializable();
         noteDescription = in.readString();
     }
 
@@ -61,7 +64,9 @@ public class Notes implements Parcelable {
         return noteName;
     }
 
-    public String getDate() {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDateTime getDate() {
+        date = LocalDateTime.now();
         return date;
     }
 
@@ -74,19 +79,22 @@ public class Notes implements Parcelable {
         return 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(getId());
         parcel.writeString(getNoteName());
-        parcel.writeString(getDate());
+        parcel.writeSerializable(getDate());
         parcel.writeString(getNoteDescription());
     }
 
     public static final Creator<Notes> CREATOR = new Creator<Notes>() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public Notes createFromParcel(Parcel in) {
             return new Notes(in);
         }
+
         @Override
         public Notes[] newArray(int size) {
             return new Notes[size];

@@ -3,38 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.NotesFragmentTwo"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".ui.NotesFragmentTwo">
 
     <EditText
-        android:backgroundTint="@color/white"
         android:id="@+id/note_name_redactor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:hint="@string/note_name" />
 
     <EditText
-        android:backgroundTint="@color/white"
-        android:id="@+id/note_date_redactor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/date_create" />
-
-    <EditText
-        android:backgroundTint="@color/white"
         android:id="@+id/note_desc_redactor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:hint="@string/note_description" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="@dimen/text_mini_btn"
+            android:text="@string/foto"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="@dimen/text_mini_btn"
+            android:text="@string/pick"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="@dimen/text_mini_btn"
+            android:text="@string/audio"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="@dimen/text_mini_btn"
+            android:text="@string/doc"/>
+    </GridLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/note_save_and_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/note_save"/>
+        android:text="@string/note_save" />
 
 </LinearLayout>

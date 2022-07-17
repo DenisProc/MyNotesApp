@@ -7,4 +7,8 @@
     <string name="note_description">Текст заметки</string>
     <string name="date_create">дата создания</string>
     <string name="note_save">Сохранить изменения</string>
+    <string name="foto">Фото</string>
+    <string name="pick">картинка</string>
+    <string name="audio">аудио</string>
+    <string name="doc">Документ</string>
 </resources>
