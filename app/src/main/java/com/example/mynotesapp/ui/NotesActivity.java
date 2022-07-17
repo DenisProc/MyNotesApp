@@ -13,8 +13,9 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        NotesFragmentOne notesFragment = new NotesFragmentOne();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_one_container,notesFragment).commit();
-
+        if (savedInstanceState == null) {
+            NotesFragmentOne notesFragment = new NotesFragmentOne();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_one_container, notesFragment).commit();
+        }
     }
 }
