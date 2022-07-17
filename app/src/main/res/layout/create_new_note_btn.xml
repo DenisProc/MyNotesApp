@@ -3,6 +3,6 @@
     android:id="@+id/create_new_note"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/create_new_note" >
+    android:text="@string/create_new_note">
 
 </com.google.android.material.button.MaterialButton>

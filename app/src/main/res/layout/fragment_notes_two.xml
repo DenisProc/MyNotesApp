@@ -32,29 +32,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textSize="@dimen/text_mini_btn"
-            android:text="@string/foto"/>
+            android:text="@string/foto"
+            android:textSize="@dimen/text_mini_btn" />
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textSize="@dimen/text_mini_btn"
-            android:text="@string/pick"/>
+            android:text="@string/pick"
+            android:textSize="@dimen/text_mini_btn" />
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textSize="@dimen/text_mini_btn"
-            android:text="@string/audio"/>
+            android:text="@string/audio"
+            android:textSize="@dimen/text_mini_btn" />
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textSize="@dimen/text_mini_btn"
-            android:text="@string/doc"/>
+            android:text="@string/doc"
+            android:textSize="@dimen/text_mini_btn" />
     </GridLayout>
 
     <FrameLayout
