@@ -7,11 +7,18 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_create_new_note.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_notes.xml" value="0.264" />
-        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/cardview_notes.xml" value="0.4" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/cardview_notes.xml" value="0.264" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/create_new_note_btn.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/drawer_header.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/fragment_about.xml" value="0.259375" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/fragment_notes.xml" value="0.264" />
-        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/fragment_notes_two.xml" value="0.20601733809280978" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/fragment_notes_two.xml" value="0.264" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/fragment_notestwo.xml" value="0.259375" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/menu/menu_drawer.xml" value="0.2518518518518518" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/menu/menu_popup.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/menu/menu_toolbar.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/menu/navigation_draver.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/MyNotesApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1635" />
       </map>
     </option>
   </component>

@@ -40,6 +40,7 @@ public class Notes implements Parcelable {
         return notesArrayList;
     }
 
+
     public Notes() {
 
     }

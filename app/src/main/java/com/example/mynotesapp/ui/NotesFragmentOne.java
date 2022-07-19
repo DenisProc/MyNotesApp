@@ -2,6 +2,7 @@ package com.example.mynotesapp.ui;
 
 import static com.example.mynotesapp.ui.NotesFragmentTwo.SELECTED_NOTE;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,15 +10,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mynotesapp.R;
 import com.example.mynotesapp.model.Notes;
@@ -44,6 +51,7 @@ public class NotesFragmentOne extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
@@ -61,6 +69,15 @@ public class NotesFragmentOne extends Fragment {
 
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem itemDelete = menu.findItem(R.id.action_delete_note);
+        if (itemDelete != null) {
+            itemDelete.setVisible(false);
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void initDisplay() {
         initDisplay(dataContainer);
@@ -70,7 +87,6 @@ public class NotesFragmentOne extends Fragment {
     public void initDisplay(View view) {
         LinearLayout container = (LinearLayout) view;
         container.removeAllViews();
-        initCreateBtn(container);
         initList(container);
     }
 
@@ -116,6 +132,7 @@ public class NotesFragmentOne extends Fragment {
     private void initList(LinearLayout container) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         for (int i = 0; i < Notes.getNotesArrayList().size(); i++) {
+
             View itemView = getLayoutInflater().inflate(R.layout.cardview_notes, container, false);
             TextView textViewNoteName = itemView.findViewById(R.id.note_name);
             textViewNoteName.setText(Notes.getNotesArrayList().get(i).getNoteName());
@@ -128,16 +145,35 @@ public class NotesFragmentOne extends Fragment {
             itemView.setOnClickListener(cardViewClick ->
                     noteBuilder(Notes.getNotesArrayList().get(index)));
             container.addView(itemView);
+            initPopupMenu(container, itemView, index);
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void initCreateBtn(LinearLayout container) {
-        View btnCreate = getLayoutInflater().inflate(R.layout.create_new_note_btn, container, false);
-        btnCreate.setOnClickListener(vBtn -> {
-            Notes.notesArrayList.add(new Notes("Заметка"));
-            initDisplay();
+    private void initPopupMenu(LinearLayout layout, View itemView, int index) {
+        itemView.setOnLongClickListener(view -> {
+            Activity activity = requireActivity();
+            PopupMenu popupMenu = new PopupMenu(activity, view);
+            activity.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_popup_delete:
+                            Notes.notesArrayList.remove(index);
+                            initDisplay();
+                            return true;
+                        case R.id.action_popup_send:
+                            Toast.makeText(activity, "Отправляем файл через WhatsApp", Toast.LENGTH_SHORT).show();
+                            return true;
+                    }
+                    return true;
+                }
+
+                ;
+            });
+            popupMenu.show();
+            return true;
         });
-        container.addView(btnCreate);
     }
 }

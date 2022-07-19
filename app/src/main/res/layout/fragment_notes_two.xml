@@ -23,44 +23,7 @@
         android:backgroundTint="@color/white"
         android:hint="@string/note_description" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="4">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:text="@string/foto"
-            android:textSize="@dimen/text_mini_btn" />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:text="@string/pick"
-            android:textSize="@dimen/text_mini_btn" />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:text="@string/audio"
-            android:textSize="@dimen/text_mini_btn" />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:text="@string/doc"
-            android:textSize="@dimen/text_mini_btn" />
-    </GridLayout>
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/note_save_and_back"

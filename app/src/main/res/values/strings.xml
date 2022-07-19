@@ -11,4 +11,13 @@
     <string name="pick">картинка</string>
     <string name="audio">аудио</string>
     <string name="doc">Документ</string>
+    <string name="about">О программе</string>
+    <string name="find">Найти</string>
+    <string name="about_txt">Это приложение было созданно в процессе моего нелегкого обучения на ITшника. Чтобы вернуться назад, нажми кнопочку ниже ↓. P.S. Здравствуйте преподаватель! Улыбнитесь!</string>
+    <string name="back_to_app">Вернуться в приложение</string>
+    <string name="delete">Удалить</string>
+    <string name="send">Отправить</string>
+    <string name="settings">Настройки</string>
+    <string name="navigation_drawer_open">"Open navigation drawer "</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
