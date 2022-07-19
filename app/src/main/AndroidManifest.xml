@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyNotesApp"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.NotesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
