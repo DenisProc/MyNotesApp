@@ -1,15 +1,12 @@
 package com.example.mynotesapp.model;
 
-import android.media.Image;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
-import java.io.File;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Notes implements Parcelable {
@@ -19,8 +16,6 @@ public class Notes implements Parcelable {
     private String noteName;
     private LocalDateTime date;
     private String noteDescription;
-    private Image image;
-    private File file;
 
 
     public int getId() {
@@ -39,11 +34,13 @@ public class Notes implements Parcelable {
     public static ArrayList<Notes> getNotesArrayList() {
         return notesArrayList;
     }
-
-
-    public Notes() {
-
+    public static Notes getNoteFromList() {
+        for (int i = 0; i < notesArrayList.size(); i++) {
+            return notesArrayList.get(i);
+        }
+        return null;
     }
+
 
     public Notes(String name) {
         this.noteName = name;
@@ -101,4 +98,8 @@ public class Notes implements Parcelable {
             return new Notes[size];
         }
     };
+
+    public Notes getNote(int position){
+            return notesArrayList.get(position);
+    }
 }

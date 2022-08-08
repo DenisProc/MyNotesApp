@@ -13,6 +13,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -27,14 +30,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mynotesapp.R;
+import com.example.mynotesapp.model.ListAdapter;
 import com.example.mynotesapp.model.Notes;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 public class NotesFragmentOne extends Fragment {
     Notes notes;
     View dataContainer;
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -52,7 +58,24 @@ public class NotesFragmentOne extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_notes, container, false);
+        View view = inflater.inflate(R.layout.fragment_notes, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler);
+
+        ArrayList<Notes> list = Notes.getNotesArrayList();
+        initRecyclerView(recyclerView, list);
+
+        return view;
+
+    }
+
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Notes> arrayList) {
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        ListAdapter listAdapter = new ListAdapter(arrayList);
+        recyclerView.setAdapter(listAdapter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -64,9 +87,10 @@ public class NotesFragmentOne extends Fragment {
         if (savedInstanceState != null) {
             notes = (Notes) savedInstanceState.getParcelable(SELECTED_NOTE);
         }
-        dataContainer = view.findViewById(R.id.fragment_one_container);
+/*        dataContainer = view.findViewById(R.id.fragment_one_container);
         initDisplay(dataContainer);
 
+ */
     }
 
     @Override
@@ -87,10 +111,10 @@ public class NotesFragmentOne extends Fragment {
     public void initDisplay(View view) {
         LinearLayout container = (LinearLayout) view;
         container.removeAllViews();
-        initList(container);
+//        initList(container);
     }
 
-    private void noteBuilder(Notes notes) {
+    public void noteBuilder(Notes notes) {
         this.notes = notes;
         if (isLandscape()) {
             noteBuilderLand(notes);
@@ -127,7 +151,7 @@ public class NotesFragmentOne extends Fragment {
         return getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
     }
-
+/*
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initList(LinearLayout container) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -141,13 +165,18 @@ public class NotesFragmentOne extends Fragment {
             TextView textViewNoteDesc = itemView.findViewById(R.id.note_desc);
             textViewNoteDesc.setText(Notes.getNotesArrayList().get(i).getNoteDescription());
 
+
             final int index = i;
             itemView.setOnClickListener(cardViewClick ->
                     noteBuilder(Notes.getNotesArrayList().get(index)));
             container.addView(itemView);
             initPopupMenu(container, itemView, index);
+
+
         }
     }
+
+ */
 
     private void initPopupMenu(LinearLayout layout, View itemView, int index) {
         itemView.setOnLongClickListener(view -> {
@@ -176,4 +205,6 @@ public class NotesFragmentOne extends Fragment {
             return true;
         });
     }
+
+
 }
